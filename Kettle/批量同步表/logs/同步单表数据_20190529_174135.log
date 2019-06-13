@@ -1,0 +1,217 @@
+2019/05/29 17:41:35 - 同步单表数据 - Using run configuration [Pentaho local]
+2019/05/29 17:41:35 - 同步单表数据 - 开始项[表名变量设置]
+2019/05/29 17:41:35 - 表名变量设置 - Using run configuration [Pentaho local]
+2019/05/29 17:41:35 - 表名变量设置 - Using legacy execution engine
+2019/05/29 17:41:35 - 表名变量设置 - 为了转换解除补丁开始  [表名变量设置]
+2019/05/29 17:41:35 - 从结果获取表名.0 - 完成处理 (I=0, O=0, R=1, W=1, U=0, E=0)
+2019/05/29 17:41:35 - 表名变量设置.0 - Setting environment variables...
+2019/05/29 17:41:35 - 表名变量设置.0 - Set variable TABLENAME to value [AUTH_GEO_ROLE]
+2019/05/29 17:41:35 - 表名变量设置.0 - Finished after 1 rows.
+2019/05/29 17:41:35 - 表名变量设置.0 - 完成处理 (I=0, O=0, R=1, W=1, U=0, E=0)
+2019/05/29 17:41:35 - 同步单表数据 - 开始项[检查表是否存在]
+2019/05/29 17:41:35 - 同步单表数据 - 开始项[比较表结构]
+2019/05/29 17:41:35 - 比较表结构 - Using run configuration [Pentaho local]
+2019/05/29 17:41:35 - 比较表结构 - Using legacy execution engine
+2019/05/29 17:41:35 - 比较表结构是否一致 - 为了转换解除补丁开始  [比较表结构是否一致]
+2019/05/29 17:41:35 - 目标表数据字典.0 - Finished reading query, closing connection.
+2019/05/29 17:41:35 - 目标表数据字典.0 - 完成处理 (I=10, O=0, R=0, W=10, U=0, E=0)
+2019/05/29 17:41:35 - 源表数据字典.0 - Finished reading query, closing connection.
+2019/05/29 17:41:35 - 源表数据字典.0 - 完成处理 (I=10, O=0, R=0, W=10, U=0, E=0)
+2019/05/29 17:41:35 - 合并记录.0 - 完成处理 (I=0, O=0, R=20, W=10, U=0, E=0)
+2019/05/29 17:41:35 - 值映射.0 - 完成处理 (I=0, O=0, R=10, W=10, U=0, E=0)
+2019/05/29 17:41:35 - 字段选择.0 - 完成处理 (I=0, O=0, R=10, W=10, U=0, E=0)
+2019/05/29 17:41:35 - 排序记录.0 - 完成处理 (I=0, O=0, R=10, W=10, U=0, E=0)
+2019/05/29 17:41:35 - 去除重复记录.0 - 完成处理 (I=0, O=0, R=10, W=1, U=0, E=0)
+2019/05/29 17:41:35 - 识别流的最后一行.0 - 完成处理 (I=0, O=0, R=1, W=1, U=0, E=0)
+2019/05/29 17:41:35 - 过滤记录.0 - 完成处理 (I=0, O=0, R=1, W=1, U=0, E=0)
+2019/05/29 17:41:35 - 复制记录到结果.0 - 完成处理 (I=0, O=0, R=1, W=1, U=0, E=0)
+2019/05/29 17:41:35 - 同步单表数据 - 开始项[设置标识]
+2019/05/29 17:41:35 - 设置标识 - Using run configuration [Pentaho local]
+2019/05/29 17:41:35 - 设置标识 - Using legacy execution engine
+2019/05/29 17:41:35 - 设置表结构是否一致的标识 - 为了转换解除补丁开始  [设置表结构是否一致的标识]
+2019/05/29 17:41:35 - 从结果获取记录.0 - 完成处理 (I=0, O=0, R=1, W=1, U=0, E=0)
+2019/05/29 17:41:35 - 设置变量.0 - Setting environment variables...
+2019/05/29 17:41:35 - 设置变量.0 - Set variable DIFFERENT_FLAG to value [same]
+2019/05/29 17:41:35 - 设置变量.0 - Finished after 1 rows.
+2019/05/29 17:41:35 - 设置变量.0 - 完成处理 (I=0, O=0, R=1, W=1, U=0, E=0)
+2019/05/29 17:41:35 - 同步单表数据 - 开始项[是否需要重建表]
+2019/05/29 17:41:35 - 同步单表数据 - 开始项[迁移单表数据]
+2019/05/29 17:41:35 - 迁移单表数据 - Using run configuration [Pentaho local]
+2019/05/29 17:41:35 - 迁移单表数据 - 开始项[查询源表主键]
+2019/05/29 17:41:35 - 查询源表主键 - Using run configuration [Pentaho local]
+2019/05/29 17:41:35 - 查询源表主键 - Using legacy execution engine
+2019/05/29 17:41:35 - 查询是否有主键 - 为了转换解除补丁开始  [查询是否有主键]
+2019/05/29 17:41:35 - 查询是否有主键.0 - Finished reading query, closing connection.
+2019/05/29 17:41:35 - 复制记录到结果.0 - 完成处理 (I=0, O=0, R=1, W=1, U=0, E=0)
+2019/05/29 17:41:35 - 查询是否有主键.0 - 完成处理 (I=1, O=0, R=0, W=1, U=0, E=0)
+2019/05/29 17:41:35 - 迁移单表数据 - 开始项[设置主键标识]
+2019/05/29 17:41:35 - 设置主键标识 - Using run configuration [Pentaho local]
+2019/05/29 17:41:35 - 设置主键标识 - Using legacy execution engine
+2019/05/29 17:41:35 - 设置是否有主键标识 - 为了转换解除补丁开始  [设置是否有主键标识]
+2019/05/29 17:41:35 - 从结果获取记录.0 - 完成处理 (I=0, O=0, R=1, W=1, U=0, E=0)
+2019/05/29 17:41:35 - 设置变量.0 - Setting environment variables...
+2019/05/29 17:41:35 - 设置变量.0 - Set variable PK_FLAG to value [1.0]
+2019/05/29 17:41:35 - 设置变量.0 - Finished after 1 rows.
+2019/05/29 17:41:35 - 设置变量.0 - 完成处理 (I=0, O=0, R=1, W=1, U=0, E=0)
+2019/05/29 17:41:35 - 迁移单表数据 - 开始项[检验主键标识]
+2019/05/29 17:41:35 - 迁移单表数据 - 开始项[查询源表主键信息]
+2019/05/29 17:41:35 - 查询源表主键信息 - Using run configuration [Pentaho local]
+2019/05/29 17:41:35 - 查询源表主键信息 - Using legacy execution engine
+2019/05/29 17:41:35 - 查询源表主键信息 - 为了转换解除补丁开始  [查询源表主键信息]
+2019/05/29 17:41:36 - 查询源表是否有主键.0 - Finished reading query, closing connection.
+2019/05/29 17:41:36 - 复制记录到结果.0 - 完成处理 (I=0, O=0, R=1, W=1, U=0, E=0)
+2019/05/29 17:41:36 - 查询源表是否有主键.0 - 完成处理 (I=1, O=0, R=0, W=1, U=0, E=0)
+2019/05/29 17:41:36 - 迁移单表数据 - 开始项[设置主键变量]
+2019/05/29 17:41:36 - 设置主键变量 - Using run configuration [Pentaho local]
+2019/05/29 17:41:36 - 设置主键变量 - Using legacy execution engine
+2019/05/29 17:41:36 - 设置主键变量 - 为了转换解除补丁开始  [设置主键变量]
+2019/05/29 17:41:36 - 从结果获取记录.0 - 完成处理 (I=0, O=0, R=1, W=1, U=0, E=0)
+2019/05/29 17:41:36 - 设置主键变量.0 - Setting environment variables...
+2019/05/29 17:41:36 - 设置主键变量.0 - Set variable PK_COLUMN to value [ID]
+2019/05/29 17:41:36 - 设置主键变量.0 - Finished after 1 rows.
+2019/05/29 17:41:36 - 设置主键变量.0 - 完成处理 (I=0, O=0, R=1, W=1, U=0, E=0)
+2019/05/29 17:41:36 - 迁移单表数据 - 开始项[生成merge语句的子句]
+2019/05/29 17:41:36 - 生成merge语句的子句 - Using run configuration [Pentaho local]
+2019/05/29 17:41:36 - 生成merge语句的子句 - Using legacy execution engine
+2019/05/29 17:41:36 - 生成merge语句的子句 - 为了转换解除补丁开始  [生成merge语句的子句]
+2019/05/29 17:41:36 - 生成merge语句子句.0 - Finished reading query, closing connection.
+2019/05/29 17:41:36 - 复制记录到结果.0 - 完成处理 (I=0, O=0, R=1, W=1, U=0, E=0)
+2019/05/29 17:41:36 - 生成merge语句子句.0 - 完成处理 (I=1, O=0, R=0, W=1, U=0, E=0)
+2019/05/29 17:41:36 - 迁移单表数据 - 开始项[设置merge语句子句变量]
+2019/05/29 17:41:36 - 设置merge语句子句变量 - Using run configuration [Pentaho local]
+2019/05/29 17:41:36 - 设置merge语句子句变量 - Using legacy execution engine
+2019/05/29 17:41:36 - 设置merge语句子句变量 - 为了转换解除补丁开始  [设置merge语句子句变量]
+2019/05/29 17:41:36 - 获取merge语句子句.0 - 完成处理 (I=0, O=0, R=1, W=1, U=0, E=0)
+2019/05/29 17:41:36 - 设置merge语句子句变量.0 - Setting environment variables...
+2019/05/29 17:41:36 - 设置merge语句子句变量.0 - Set variable UPDATE_SQL to value [ UPDATE
+ SET 
+ TARGET.CREATE_TIMESTAMP= SOURCE.CREATE_TIMESTAMP
+,TARGET.UPDATE_TIMESTAMP= SOURCE.UPDATE_TIMESTAMP
+,TARGET.CITY_CODE= SOURCE.CITY_CODE
+,TARGET.CITY_NAME= SOURCE.CITY_NAME
+,TARGET.PROVINCE_CODE= SOURCE.PROVINCE_CODE
+,TARGET.PROVINCE_NAME= SOURCE.PROVINCE_NAME
+,TARGET.REGION_CODE= SOURCE.REGION_CODE
+,TARGET.REGION_NAME= SOURCE.REGION_NAME
+,TARGET.USER_ID= SOURCE.USER_ID
+]
+2019/05/29 17:41:36 - 设置merge语句子句变量.0 - Set variable INSERT_SQL to value [ INSERT
+ (TARGET.CREATE_TIMESTAMP,TARGET.UPDATE_TIMESTAMP,TARGET.CITY_CODE,TARGET.CITY_NAME,TARGET.PROVINCE_CODE,TARGET.PROVINCE_NAME,TARGET.REGION_CODE,TARGET.REGION_NAME,TARGET.USER_ID)
+ VALUES
+ (SOURCE.CREATE_TIMESTAMP,SOURCE.UPDATE_TIMESTAMP,SOURCE.CITY_CODE,SOURCE.CITY_NAME,SOURCE.PROVINCE_CODE,SOURCE.PROVINCE_NAME,SOURCE.REGION_CODE,SOURCE.REGION_NAME,SOURCE.USER_ID)]
+2019/05/29 17:41:36 - 设置merge语句子句变量.0 - Finished after 1 rows.
+2019/05/29 17:41:36 - 设置merge语句子句变量.0 - 完成处理 (I=0, O=0, R=1, W=1, U=0, E=0)
+2019/05/29 17:41:36 - 迁移单表数据 - 开始项[增量迁移单表数据]
+2019/05/29 17:41:36 - 增量迁移单表数据 - Using run configuration [Pentaho local]
+2019/05/29 17:41:36 - 增量迁移单表数据 - Using legacy execution engine
+2019/05/29 17:41:36 - 增量迁移单表数据 - 为了转换解除补丁开始  [增量迁移单表数据]
+2019/05/29 17:41:36 - 执行SQL脚本.0 - Finished reading query, closing connection.
+2019/05/29 17:41:36 - 执行SQL脚本.0 - 完成处理 (I=0, O=0, R=0, W=1, U=0, E=0)
+2019/05/29 17:41:36 - 迁移单表数据 - 开始项[成功1]
+2019/05/29 17:41:36 - 迁移单表数据 - 完成作业项[成功1] (结果=[true])
+2019/05/29 17:41:36 - 迁移单表数据 - 完成作业项[增量迁移单表数据] (结果=[true])
+2019/05/29 17:41:36 - 迁移单表数据 - 完成作业项[设置merge语句子句变量] (结果=[true])
+2019/05/29 17:41:36 - 迁移单表数据 - 完成作业项[生成merge语句的子句] (结果=[true])
+2019/05/29 17:41:36 - 迁移单表数据 - 完成作业项[设置主键变量] (结果=[true])
+2019/05/29 17:41:36 - 迁移单表数据 - 完成作业项[查询源表主键信息] (结果=[true])
+2019/05/29 17:41:36 - 迁移单表数据 - 完成作业项[检验主键标识] (结果=[true])
+2019/05/29 17:41:36 - 迁移单表数据 - 完成作业项[设置主键标识] (结果=[true])
+2019/05/29 17:41:36 - 迁移单表数据 - 完成作业项[查询源表主键] (结果=[true])
+2019/05/29 17:41:36 - 同步单表数据 - 开始项[分析源表收集统计信息]
+2019/05/29 17:41:36 - 同步单表数据 - 开始项[数据量差异输出]
+2019/05/29 17:41:36 - 数据量差异输出 - Using run configuration [Pentaho local]
+2019/05/29 17:41:36 - 数据量差异输出 - Using legacy execution engine
+2019/05/29 17:41:36 - 比较源表和目标表数据量差异 - 为了转换解除补丁开始  [比较源表和目标表数据量差异]
+2019/05/29 17:41:37 - 读取Excel中的表清单.0 - 完成处理 (I=15, O=0, R=0, W=30, U=0, E=0)
+2019/05/29 17:41:37 - 获取目标表数据量.0 - Finished reading query, closing connection.
+2019/05/29 17:41:37 - 获取目标表数据量.0 - 完成处理 (I=199, O=0, R=0, W=199, U=0, E=0)
+2019/05/29 17:41:37 - 获取源表数据量.0 - Finished reading query, closing connection.
+2019/05/29 17:41:37 - 获取源表数据量.0 - 完成处理 (I=168, O=0, R=0, W=168, U=0, E=0)
+2019/05/29 17:41:37 - 清单中的表在目标端数据量.0 - 完成处理 (I=0, O=0, R=214, W=15, U=0, E=0)
+2019/05/29 17:41:37 - 字段选择2.0 - 完成处理 (I=0, O=0, R=15, W=15, U=0, E=0)
+2019/05/29 17:41:37 - 清单中的表在源端数据量.0 - 完成处理 (I=0, O=0, R=183, W=15, U=0, E=0)
+2019/05/29 17:41:37 - 字段选择1.0 - 完成处理 (I=0, O=0, R=15, W=15, U=0, E=0)
+2019/05/29 17:41:37 - 记录集连接.0 - 完成处理 (I=0, O=0, R=30, W=15, U=0, E=0)
+2019/05/29 17:41:37 - 计算器.0 - 完成处理 (I=0, O=0, R=15, W=15, U=0, E=0)
+2019/05/29 17:41:37 - 字段选择.0 - 完成处理 (I=0, O=0, R=15, W=15, U=0, E=0)
+2019/05/29 17:41:37 - Microsoft Excel 输出.0 - ERROR (version 8.2.0.0-342, build 8.2.0.0-342 from 2018-11-14 10.30.55 by buildguy) : Unexpected error
+2019/05/29 17:41:37 - Microsoft Excel 输出.0 - ERROR (version 8.2.0.0-342, build 8.2.0.0-342 from 2018-11-14 10.30.55 by buildguy) : org.pentaho.di.core.exception.KettleException: 
+2019/05/29 17:41:37 - Microsoft Excel 输出.0 - org.apache.commons.vfs2.FileSystemException: Could not write to "file:///D:/WorkSpace/kettle/文件/需要同步的表清单_Test.xls".
+2019/05/29 17:41:37 - Microsoft Excel 输出.0 - Could not write to "file:///D:/WorkSpace/kettle/文件/需要同步的表清单_Test.xls".
+2019/05/29 17:41:37 - Microsoft Excel 输出.0 - 
+2019/05/29 17:41:37 - Microsoft Excel 输出.0 - 	at org.pentaho.di.trans.steps.excelwriter.ExcelWriterStep.closeOutputFile(ExcelWriterStep.java:256)
+2019/05/29 17:41:37 - Microsoft Excel 输出.0 - 	at org.pentaho.di.trans.steps.excelwriter.ExcelWriterStep.processRow(ExcelWriterStep.java:208)
+2019/05/29 17:41:37 - Microsoft Excel 输出.0 - 	at org.pentaho.di.trans.step.RunThread.run(RunThread.java:62)
+2019/05/29 17:41:37 - Microsoft Excel 输出.0 - 	at java.lang.Thread.run(Thread.java:748)
+2019/05/29 17:41:37 - Microsoft Excel 输出.0 - Caused by: org.apache.commons.vfs2.FileSystemException: Could not write to "file:///D:/WorkSpace/kettle/文件/需要同步的表清单_Test.xls".
+2019/05/29 17:41:37 - Microsoft Excel 输出.0 - 	at org.apache.commons.vfs2.provider.AbstractFileObject.getOutputStream(AbstractFileObject.java:1197)
+2019/05/29 17:41:37 - Microsoft Excel 输出.0 - 	at org.apache.commons.vfs2.provider.DefaultFileContent.getOutputStream(DefaultFileContent.java:413)
+2019/05/29 17:41:37 - Microsoft Excel 输出.0 - 	at org.pentaho.di.core.vfs.KettleVFS.getOutputStream(KettleVFS.java:291)
+2019/05/29 17:41:37 - Microsoft Excel 输出.0 - 	at org.pentaho.di.trans.steps.excelwriter.ExcelWriterStep.closeOutputFile(ExcelWriterStep.java:226)
+2019/05/29 17:41:37 - Microsoft Excel 输出.0 - 	... 3 more
+2019/05/29 17:41:37 - Microsoft Excel 输出.0 - Caused by: java.io.FileNotFoundException: D:\WorkSpace\kettle\文件\需要同步的表清单_Test.xls (另一个程序正在使用此文件，进程无法访问。)
+2019/05/29 17:41:37 - Microsoft Excel 输出.0 - 	at java.io.FileOutputStream.open0(Native Method)
+2019/05/29 17:41:37 - Microsoft Excel 输出.0 - 	at java.io.FileOutputStream.open(FileOutputStream.java:270)
+2019/05/29 17:41:37 - Microsoft Excel 输出.0 - 	at java.io.FileOutputStream.<init>(FileOutputStream.java:213)
+2019/05/29 17:41:37 - Microsoft Excel 输出.0 - 	at java.io.FileOutputStream.<init>(FileOutputStream.java:133)
+2019/05/29 17:41:37 - Microsoft Excel 输出.0 - 	at org.apache.commons.vfs2.provider.local.LocalFile.doGetOutputStream(LocalFile.java:223)
+2019/05/29 17:41:37 - Microsoft Excel 输出.0 - 	at org.apache.commons.vfs2.provider.AbstractFileObject.getOutputStream(AbstractFileObject.java:1193)
+2019/05/29 17:41:37 - Microsoft Excel 输出.0 - 	... 6 more
+2019/05/29 17:41:37 - Microsoft Excel 输出.0 - 完成处理 (I=0, O=16, R=15, W=15, U=0, E=1)
+2019/05/29 17:41:37 - 比较源表和目标表数据量差异 - 转换被检测 
+2019/05/29 17:41:37 - 比较源表和目标表数据量差异 - 转换正在杀死其他步骤!
+2019/05/29 17:41:37 - 比较源表和目标表数据量差异 - ERROR (version 8.2.0.0-342, build 8.2.0.0-342 from 2018-11-14 10.30.55 by buildguy) : 错误被检测到!
+2019/05/29 17:41:37 - 同步单表数据 - 完成作业项[数据量差异输出] (结果=[false])
+2019/05/29 17:41:37 - 同步单表数据 - 完成作业项[分析源表收集统计信息] (结果=[false])
+2019/05/29 17:41:37 - 同步单表数据 - 开始项[分析目标表收集统计信息]
+2019/05/29 17:41:38 - 同步单表数据 - 开始项[数据量差异输出]
+2019/05/29 17:41:38 - 数据量差异输出 - Using run configuration [Pentaho local]
+2019/05/29 17:41:38 - 数据量差异输出 - Using legacy execution engine
+2019/05/29 17:41:38 - 比较源表和目标表数据量差异 - 为了转换解除补丁开始  [比较源表和目标表数据量差异]
+2019/05/29 17:41:38 - 读取Excel中的表清单.0 - 完成处理 (I=15, O=0, R=0, W=30, U=0, E=0)
+2019/05/29 17:41:38 - 获取目标表数据量.0 - Finished reading query, closing connection.
+2019/05/29 17:41:38 - 获取目标表数据量.0 - 完成处理 (I=199, O=0, R=0, W=199, U=0, E=0)
+2019/05/29 17:41:38 - 获取源表数据量.0 - Finished reading query, closing connection.
+2019/05/29 17:41:38 - 获取源表数据量.0 - 完成处理 (I=168, O=0, R=0, W=168, U=0, E=0)
+2019/05/29 17:41:38 - 清单中的表在目标端数据量.0 - 完成处理 (I=0, O=0, R=214, W=15, U=0, E=0)
+2019/05/29 17:41:38 - 字段选择2.0 - 完成处理 (I=0, O=0, R=15, W=15, U=0, E=0)
+2019/05/29 17:41:39 - 清单中的表在源端数据量.0 - 完成处理 (I=0, O=0, R=183, W=15, U=0, E=0)
+2019/05/29 17:41:39 - 字段选择1.0 - 完成处理 (I=0, O=0, R=15, W=15, U=0, E=0)
+2019/05/29 17:41:39 - 记录集连接.0 - 完成处理 (I=0, O=0, R=30, W=15, U=0, E=0)
+2019/05/29 17:41:39 - 计算器.0 - 完成处理 (I=0, O=0, R=15, W=15, U=0, E=0)
+2019/05/29 17:41:39 - 字段选择.0 - 完成处理 (I=0, O=0, R=15, W=15, U=0, E=0)
+2019/05/29 17:41:39 - Microsoft Excel 输出.0 - ERROR (version 8.2.0.0-342, build 8.2.0.0-342 from 2018-11-14 10.30.55 by buildguy) : Unexpected error
+2019/05/29 17:41:39 - Microsoft Excel 输出.0 - ERROR (version 8.2.0.0-342, build 8.2.0.0-342 from 2018-11-14 10.30.55 by buildguy) : org.pentaho.di.core.exception.KettleException: 
+2019/05/29 17:41:39 - Microsoft Excel 输出.0 - org.apache.commons.vfs2.FileSystemException: Could not write to "file:///D:/WorkSpace/kettle/文件/需要同步的表清单_Test.xls".
+2019/05/29 17:41:39 - Microsoft Excel 输出.0 - Could not write to "file:///D:/WorkSpace/kettle/文件/需要同步的表清单_Test.xls".
+2019/05/29 17:41:39 - Microsoft Excel 输出.0 - 
+2019/05/29 17:41:39 - Microsoft Excel 输出.0 - 	at org.pentaho.di.trans.steps.excelwriter.ExcelWriterStep.closeOutputFile(ExcelWriterStep.java:256)
+2019/05/29 17:41:39 - Microsoft Excel 输出.0 - 	at org.pentaho.di.trans.steps.excelwriter.ExcelWriterStep.processRow(ExcelWriterStep.java:208)
+2019/05/29 17:41:39 - Microsoft Excel 输出.0 - 	at org.pentaho.di.trans.step.RunThread.run(RunThread.java:62)
+2019/05/29 17:41:39 - Microsoft Excel 输出.0 - 	at java.lang.Thread.run(Thread.java:748)
+2019/05/29 17:41:39 - Microsoft Excel 输出.0 - Caused by: org.apache.commons.vfs2.FileSystemException: Could not write to "file:///D:/WorkSpace/kettle/文件/需要同步的表清单_Test.xls".
+2019/05/29 17:41:39 - Microsoft Excel 输出.0 - 	at org.apache.commons.vfs2.provider.AbstractFileObject.getOutputStream(AbstractFileObject.java:1197)
+2019/05/29 17:41:39 - Microsoft Excel 输出.0 - 	at org.apache.commons.vfs2.provider.DefaultFileContent.getOutputStream(DefaultFileContent.java:413)
+2019/05/29 17:41:39 - Microsoft Excel 输出.0 - 	at org.pentaho.di.core.vfs.KettleVFS.getOutputStream(KettleVFS.java:291)
+2019/05/29 17:41:39 - Microsoft Excel 输出.0 - 	at org.pentaho.di.trans.steps.excelwriter.ExcelWriterStep.closeOutputFile(ExcelWriterStep.java:226)
+2019/05/29 17:41:39 - Microsoft Excel 输出.0 - 	... 3 more
+2019/05/29 17:41:39 - Microsoft Excel 输出.0 - Caused by: java.io.FileNotFoundException: D:\WorkSpace\kettle\文件\需要同步的表清单_Test.xls (另一个程序正在使用此文件，进程无法访问。)
+2019/05/29 17:41:39 - Microsoft Excel 输出.0 - 	at java.io.FileOutputStream.open0(Native Method)
+2019/05/29 17:41:39 - Microsoft Excel 输出.0 - 	at java.io.FileOutputStream.open(FileOutputStream.java:270)
+2019/05/29 17:41:39 - Microsoft Excel 输出.0 - 	at java.io.FileOutputStream.<init>(FileOutputStream.java:213)
+2019/05/29 17:41:39 - Microsoft Excel 输出.0 - 	at java.io.FileOutputStream.<init>(FileOutputStream.java:133)
+2019/05/29 17:41:39 - Microsoft Excel 输出.0 - 	at org.apache.commons.vfs2.provider.local.LocalFile.doGetOutputStream(LocalFile.java:223)
+2019/05/29 17:41:39 - Microsoft Excel 输出.0 - 	at org.apache.commons.vfs2.provider.AbstractFileObject.getOutputStream(AbstractFileObject.java:1193)
+2019/05/29 17:41:39 - Microsoft Excel 输出.0 - 	... 6 more
+2019/05/29 17:41:39 - Microsoft Excel 输出.0 - 完成处理 (I=0, O=16, R=15, W=15, U=0, E=1)
+2019/05/29 17:41:39 - 比较源表和目标表数据量差异 - 转换被检测 
+2019/05/29 17:41:39 - 比较源表和目标表数据量差异 - 转换正在杀死其他步骤!
+2019/05/29 17:41:39 - 比较源表和目标表数据量差异 - ERROR (version 8.2.0.0-342, build 8.2.0.0-342 from 2018-11-14 10.30.55 by buildguy) : 错误被检测到!
+2019/05/29 17:41:39 - 同步单表数据 - 完成作业项[数据量差异输出] (结果=[false])
+2019/05/29 17:41:39 - 同步单表数据 - 完成作业项[分析目标表收集统计信息] (结果=[false])
+2019/05/29 17:41:39 - 同步单表数据 - 完成作业项[迁移单表数据] (结果=[false])
+2019/05/29 17:41:39 - 同步单表数据 - 完成作业项[是否需要重建表] (结果=[false])
+2019/05/29 17:41:39 - 同步单表数据 - 完成作业项[设置标识] (结果=[false])
+2019/05/29 17:41:39 - 同步单表数据 - 完成作业项[比较表结构] (结果=[false])
+2019/05/29 17:41:39 - 同步单表数据 - 完成作业项[检查表是否存在] (结果=[false])
+2019/05/29 17:41:39 - 同步单表数据 - 完成作业项[表名变量设置] (结果=[false])
