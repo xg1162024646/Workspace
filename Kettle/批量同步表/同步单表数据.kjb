@@ -3,11 +3,11 @@
   <description/>
   <extended_description/>
   <job_version/>
-  <directory>/Test</directory>
+  <directory>/</directory>
   <created_user>-</created_user>
   <created_date>2019/05/22 15:43:59.097</created_date>
   <modified_user>-</modified_user>
-  <modified_date>2019/05/29 17:48:52.243</modified_date>
+  <modified_date>2019/06/14 17:02:28.113</modified_date>
   <parameters>
     </parameters>
   <connection>
@@ -383,7 +383,7 @@
       <trans_object_id/>
       <filename/>
       <transname>表名变量设置</transname>
-      <directory>${Internal.Job.Filename.Directory}</directory>
+      <directory>${Internal.Entry.Current.Directory}</directory>
       <arg_from_previous>N</arg_from_previous>
       <params_from_previous>N</params_from_previous>
       <exec_per_row>N</exec_per_row>

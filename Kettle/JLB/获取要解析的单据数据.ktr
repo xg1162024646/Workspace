@@ -428,7 +428,7 @@
     <created_user>-</created_user>
     <created_date>2019/06/05 17:36:53.024</created_date>
     <modified_user>-</modified_user>
-    <modified_date>2019/06/06 09:37:23.066</modified_date>
+    <modified_date>2019/06/17 15:54:23.579</modified_date>
     <key_for_session_key>H4sIAAAAAAAAAAMAAAAAAAAAAAA=</key_for_session_key>
     <is_key_private>N</is_key_private>
   </info>
@@ -491,7 +491,7 @@
   </connection>
   <order>
     <hop>
-      <from>表输入</from>
+      <from>获取要解析的数据</from>
       <to>复制记录到结果</to>
       <enabled>Y</enabled>
     </hop>
@@ -516,13 +516,13 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>384</xloc>
+      <xloc>400</xloc>
       <yloc>176</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>表输入</name>
+    <name>获取要解析的数据</name>
     <type>TableInput</type>
     <description/>
     <distribute>Y</distribute>
