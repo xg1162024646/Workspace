@@ -1,10 +1,11 @@
 <transformation>
   <info>
-    <name>设置主键变量</name>
+    <name>红楼-商品数据处理</name>
     <description/>
     <extended_description/>
     <trans_version/>
     <trans_type>Normal</trans_type>
+    <trans_status>0</trans_status>
     <directory>/</directory>
     <parameters>
     </parameters>
@@ -414,7 +415,7 @@
     <feedback_size>50000</feedback_size>
     <using_thread_priorities>Y</using_thread_priorities>
     <shared_objects_file/>
-    <capture_step_performance>N</capture_step_performance>
+    <capture_step_performance>Y</capture_step_performance>
     <step_performance_capturing_delay>1000</step_performance_capturing_delay>
     <step_performance_capturing_size_limit>100</step_performance_capturing_size_limit>
     <dependencies>
@@ -426,24 +427,84 @@
     <clusterschemas>
     </clusterschemas>
     <created_user>-</created_user>
-    <created_date>2019/06/06 09:25:07.243</created_date>
+    <created_date>2019/06/04 17:53:34.673</created_date>
     <modified_user>-</modified_user>
-    <modified_date>2019/06/24 15:47:57.958</modified_date>
+    <modified_date>2019/06/25 18:46:40.374</modified_date>
     <key_for_session_key>H4sIAAAAAAAAAAMAAAAAAAAAAAA=</key_for_session_key>
     <is_key_private>N</is_key_private>
   </info>
   <notepads>
   </notepads>
+  <connection>
+    <name>KMS_BOZHI_82</name>
+    <server>${kms_bozhi_82_host}</server>
+    <type>ORACLE</type>
+    <access>Native</access>
+    <database>${kms_bozhi_82_db}</database>
+    <port>${kms_bozhi_82_port}</port>
+    <username>${kms_bozhi_82_db_user}</username>
+    <password>${kms_bozhi_82_pwd}</password>
+    <servername/>
+    <data_tablespace>${kms_bozhi_82_tablespace}</data_tablespace>
+    <index_tablespace/>
+    <attributes>
+      <attribute>
+        <code>FORCE_IDENTIFIERS_TO_LOWERCASE</code>
+        <attribute>N</attribute>
+      </attribute>
+      <attribute>
+        <code>FORCE_IDENTIFIERS_TO_UPPERCASE</code>
+        <attribute>N</attribute>
+      </attribute>
+      <attribute>
+        <code>IS_CLUSTERED</code>
+        <attribute>N</attribute>
+      </attribute>
+      <attribute>
+        <code>PORT_NUMBER</code>
+        <attribute>${kms_bozhi_82_port}</attribute>
+      </attribute>
+      <attribute>
+        <code>PRESERVE_RESERVED_WORD_CASE</code>
+        <attribute>Y</attribute>
+      </attribute>
+      <attribute>
+        <code>QUOTE_ALL_FIELDS</code>
+        <attribute>N</attribute>
+      </attribute>
+      <attribute>
+        <code>STRICT_NUMBER_38_INTERPRETATION</code>
+        <attribute>N</attribute>
+      </attribute>
+      <attribute>
+        <code>SUPPORTS_BOOLEAN_DATA_TYPE</code>
+        <attribute>Y</attribute>
+      </attribute>
+      <attribute>
+        <code>SUPPORTS_TIMESTAMP_DATA_TYPE</code>
+        <attribute>Y</attribute>
+      </attribute>
+      <attribute>
+        <code>USE_POOLING</code>
+        <attribute>N</attribute>
+      </attribute>
+    </attributes>
+  </connection>
   <order>
     <hop>
-      <from>从结果获取记录</from>
-      <to>设置变量</to>
+      <from>红楼-订单-商品数据解析</from>
+      <to>红楼-订单-商品数据输出</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>获取要处理的商品数据</from>
+      <to>红楼-订单-商品数据解析</to>
       <enabled>Y</enabled>
     </hop>
   </order>
   <step>
-    <name>从结果获取记录</name>
-    <type>RowsFromResult</type>
+    <name>红楼-订单-商品数据解析</name>
+    <type>JsonInput</type>
     <description/>
     <distribute>Y</distribute>
     <custom_distribution/>
@@ -452,26 +513,207 @@
       <method>none</method>
       <schema_name/>
     </partitioning>
+    <include>N</include>
+    <include_field/>
+    <rownum>N</rownum>
+    <addresultfile>N</addresultfile>
+    <readurl>N</readurl>
+    <removeSourceField>N</removeSourceField>
+    <IsIgnoreEmptyFile>N</IsIgnoreEmptyFile>
+    <doNotFailIfNoFile>Y</doNotFailIfNoFile>
+    <ignoreMissingPath>Y</ignoreMissingPath>
+    <defaultPathLeafToNull>Y</defaultPathLeafToNull>
+    <rownum_field/>
+    <file>
+      <name/>
+      <filemask/>
+      <exclude_filemask/>
+      <file_required>N</file_required>
+      <include_subfolders>N</include_subfolders>
+    </file>
     <fields>
       <field>
-        <name>ID</name>
-        <type>Integer</type>
+        <name>BAR_CODE</name>
+        <path>$..商品详情[*].主条码</path>
+        <type>None</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
         <length>-1</length>
         <precision>-1</precision>
+        <trim_type>both</trim_type>
+        <repeat>N</repeat>
       </field>
       <field>
-        <name>INVOICES_TYPE</name>
-        <type>String</type>
+        <name>GOODS_NAME</name>
+        <path>$..商品详情[*].商品名称</path>
+        <type>None</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
         <length>-1</length>
         <precision>-1</precision>
+        <trim_type>both</trim_type>
+        <repeat>N</repeat>
       </field>
       <field>
-        <name>KA_NAME</name>
-        <type>String</type>
+        <name>SELECTION</name>
+        <path>$..商品详情[*].选择</path>
+        <type>None</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
         <length>-1</length>
         <precision>-1</precision>
+        <trim_type>both</trim_type>
+        <repeat>N</repeat>
+      </field>
+      <field>
+        <name>AMOUNT</name>
+        <path>$..商品详情[*].订货金额</path>
+        <type>None</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <trim_type>both</trim_type>
+        <repeat>N</repeat>
+      </field>
+      <field>
+        <name>GOODS_CODE</name>
+        <path>$..商品详情[*].商品编码</path>
+        <type>None</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <trim_type>both</trim_type>
+        <repeat>N</repeat>
+      </field>
+      <field>
+        <name>UNIT</name>
+        <path>$..商品详情[*].销售单位</path>
+        <type>None</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <trim_type>both</trim_type>
+        <repeat>N</repeat>
+      </field>
+      <field>
+        <name>REMARK</name>
+        <path>$..商品详情[*].备注</path>
+        <type>None</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <trim_type>both</trim_type>
+        <repeat>N</repeat>
+      </field>
+      <field>
+        <name>UNIT_PRICE_IN_TAX</name>
+        <path>$..商品详情[*].含税单价</path>
+        <type>None</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <trim_type>both</trim_type>
+        <repeat>N</repeat>
+      </field>
+      <field>
+        <name>PURCHASE_PRICE_IS_RIGHT</name>
+        <path>$..商品详情[*].进价无误</path>
+        <type>None</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <trim_type>both</trim_type>
+        <repeat>N</repeat>
+      </field>
+      <field>
+        <name>FEEDBACK_QUANTITY</name>
+        <path>$..商品详情[*].反馈数量</path>
+        <type>None</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <trim_type>both</trim_type>
+        <repeat>N</repeat>
+      </field>
+      <field>
+        <name>QUANTITY</name>
+        <path>$..商品详情[*].订货数量</path>
+        <type>None</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <trim_type>both</trim_type>
+        <repeat>N</repeat>
+      </field>
+      <field>
+        <name>FEEDBACK_PURCHASE_PRICE</name>
+        <path>$..商品详情[*].反馈进价</path>
+        <type>None</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <trim_type>both</trim_type>
+        <repeat>N</repeat>
+      </field>
+      <field>
+        <name>QUANTITY_IS_RIGHT</name>
+        <path>$..商品详情[*].数量无误</path>
+        <type>None</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <trim_type>both</trim_type>
+        <repeat>N</repeat>
       </field>
     </fields>
+    <limit>0</limit>
+    <IsInFields>Y</IsInFields>
+    <IsAFile>N</IsAFile>
+    <valueField>GOODS_DETAIL</valueField>
+    <shortFileFieldName/>
+    <pathFieldName/>
+    <hiddenFieldName/>
+    <lastModificationTimeFieldName/>
+    <uriNameFieldName/>
+    <rootUriNameFieldName/>
+    <extensionFieldName/>
+    <sizeFieldName/>
     <attributes/>
     <cluster_schema/>
     <remotesteps>
@@ -481,14 +723,14 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>224</xloc>
-      <yloc>192</yloc>
+      <xloc>352</xloc>
+      <yloc>240</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>设置变量</name>
-    <type>SetVariable</type>
+    <name>红楼-订单-商品数据输出</name>
+    <type>TableOutput</type>
     <description/>
     <distribute>Y</distribute>
     <custom_distribution/>
@@ -497,27 +739,89 @@
       <method>none</method>
       <schema_name/>
     </partitioning>
+    <connection>KMS_BOZHI_82</connection>
+    <schema/>
+    <table>F_KMS_ORDER_GOODS_DETAIL_STG</table>
+    <commit>1000</commit>
+    <truncate>N</truncate>
+    <ignore_errors>N</ignore_errors>
+    <use_batch>Y</use_batch>
+    <specify_fields>Y</specify_fields>
+    <partitioning_enabled>N</partitioning_enabled>
+    <partitioning_field/>
+    <partitioning_daily>N</partitioning_daily>
+    <partitioning_monthly>Y</partitioning_monthly>
+    <tablename_in_field>N</tablename_in_field>
+    <tablename_field/>
+    <tablename_in_table>Y</tablename_in_table>
+    <return_keys>N</return_keys>
+    <return_field/>
     <fields>
       <field>
-        <field_name>ID</field_name>
-        <variable_name>ID</variable_name>
-        <variable_type>ROOT_JOB</variable_type>
-        <default_value/>
+        <column_name>ORDER_FORM_ID</column_name>
+        <stream_name>ID</stream_name>
       </field>
       <field>
-        <field_name>INVOICES_TYPE</field_name>
-        <variable_name>INVOICES_TYPE</variable_name>
-        <variable_type>ROOT_JOB</variable_type>
-        <default_value/>
+        <column_name>ORDER_NUMBER</column_name>
+        <stream_name>ORDER_NUMBER</stream_name>
       </field>
       <field>
-        <field_name>KA_NAME</field_name>
-        <variable_name>KA_NAME</variable_name>
-        <variable_type>ROOT_JOB</variable_type>
-        <default_value/>
+        <column_name>BAR_CODE</column_name>
+        <stream_name>BAR_CODE</stream_name>
+      </field>
+      <field>
+        <column_name>GOODS_NAME</column_name>
+        <stream_name>GOODS_NAME</stream_name>
+      </field>
+      <field>
+        <column_name>SELECTION</column_name>
+        <stream_name>SELECTION</stream_name>
+      </field>
+      <field>
+        <column_name>AMOUNT</column_name>
+        <stream_name>AMOUNT</stream_name>
+      </field>
+      <field>
+        <column_name>GOODS_CODE</column_name>
+        <stream_name>GOODS_CODE</stream_name>
+      </field>
+      <field>
+        <column_name>UNIT</column_name>
+        <stream_name>UNIT</stream_name>
+      </field>
+      <field>
+        <column_name>REMARK</column_name>
+        <stream_name>REMARK</stream_name>
+      </field>
+      <field>
+        <column_name>UNIT_PRICE_IN_TAX</column_name>
+        <stream_name>UNIT_PRICE_IN_TAX</stream_name>
+      </field>
+      <field>
+        <column_name>PURCHASE_PRICE_IS_RIGHT</column_name>
+        <stream_name>PURCHASE_PRICE_IS_RIGHT</stream_name>
+      </field>
+      <field>
+        <column_name>FEEDBACK_QUANTITY</column_name>
+        <stream_name>FEEDBACK_QUANTITY</stream_name>
+      </field>
+      <field>
+        <column_name>QUANTITY</column_name>
+        <stream_name>QUANTITY</stream_name>
+      </field>
+      <field>
+        <column_name>FEEDBACK_PURCHASE_PRICE</column_name>
+        <stream_name>FEEDBACK_PURCHASE_PRICE</stream_name>
+      </field>
+      <field>
+        <column_name>QUANTITY_IS_RIGHT</column_name>
+        <stream_name>QUANTITY_IS_RIGHT</stream_name>
+      </field>
+      <field>
+        <column_name>INVOICES_ID</column_name>
+        <stream_name>INVOICES_ID</stream_name>
       </field>
     </fields>
-    <use_formatting>Y</use_formatting>
     <attributes/>
     <cluster_schema/>
     <remotesteps>
@@ -527,8 +831,47 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>448</xloc>
-      <yloc>192</yloc>
+      <xloc>544</xloc>
+      <yloc>240</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>获取要处理的商品数据</name>
+    <type>TableInput</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <connection>KMS_BOZHI_82</connection>
+    <sql>SELECT
+  ID
+, INVOICES_ID
+, ORDER_NUMBER
+, GOODS_DETAIL
+FROM ${kms_bozhi_82_table_user}.F_KMS_ORDER_FORM_DETAIL_STG
+WHERE INVOICES_ID = ${ID}
+ORDER BY ID</sql>
+    <limit>0</limit>
+    <lookup/>
+    <execute_each_row>N</execute_each_row>
+    <variables_active>Y</variables_active>
+    <lazy_conversion_active>N</lazy_conversion_active>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>160</xloc>
+      <yloc>240</yloc>
       <draw>Y</draw>
     </GUI>
   </step>

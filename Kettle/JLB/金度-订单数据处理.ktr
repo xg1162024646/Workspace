@@ -1,12 +1,12 @@
 <transformation>
   <info>
-    <name>永辉</name>
+    <name>金度-订单数据处理</name>
     <description/>
     <extended_description/>
     <trans_version/>
     <trans_type>Normal</trans_type>
     <trans_status>0</trans_status>
-    <directory>/JLB/ktr</directory>
+    <directory>/</directory>
     <parameters>
     </parameters>
     <log>
@@ -429,23 +429,23 @@
     <created_user>-</created_user>
     <created_date>2019/06/04 17:53:34.673</created_date>
     <modified_user>-</modified_user>
-    <modified_date>2019/06/11 16:49:34.745</modified_date>
+    <modified_date>2019/06/25 16:41:08.363</modified_date>
     <key_for_session_key>H4sIAAAAAAAAAAMAAAAAAAAAAAA=</key_for_session_key>
     <is_key_private>N</is_key_private>
   </info>
   <notepads>
   </notepads>
   <connection>
-    <name>XGT_TARGET</name>
-    <server>${xgt_target_host}</server>
+    <name>KMS_BOZHI_82</name>
+    <server>${kms_bozhi_82_host}</server>
     <type>ORACLE</type>
     <access>Native</access>
-    <database>${xgt_target_db}</database>
-    <port>${xgt_target_port}</port>
-    <username>${xgt_target_user}</username>
-    <password>${xgt_target_pwd}</password>
+    <database>${kms_bozhi_82_db}</database>
+    <port>${kms_bozhi_82_port}</port>
+    <username>${kms_bozhi_82_db_user}</username>
+    <password>${kms_bozhi_82_pwd}</password>
     <servername/>
-    <data_tablespace>${xgt_target_tablespace}</data_tablespace>
+    <data_tablespace>${kms_bozhi_82_tablespace}</data_tablespace>
     <index_tablespace/>
     <attributes>
       <attribute>
@@ -462,7 +462,7 @@
       </attribute>
       <attribute>
         <code>PORT_NUMBER</code>
-        <attribute>${xgt_target_port}</attribute>
+        <attribute>${kms_bozhi_82_port}</attribute>
       </attribute>
       <attribute>
         <code>PRESERVE_RESERVED_WORD_CASE</code>
@@ -498,42 +498,32 @@
     </hop>
     <hop>
       <from>Switch / case</from>
-      <to>订单单据处理</to>
+      <to>金度订单头解析</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Switch / case</from>
-      <to>退货单单据处理</to>
+      <from>金度订单头解析</from>
+      <to>商品数据处理</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Switch / case</from>
-      <to>验收单单据处理</to>
+      <from>日期格式调整</from>
+      <to>日期格式化</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Switch / case</from>
-      <to>变价单单据处理</to>
+      <from>订货日期处理</from>
+      <to>日期格式调整</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>订单单据处理</from>
-      <to>表输出-订单</to>
+      <from>商品数据处理</from>
+      <to>订货日期处理</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>退货单单据处理</from>
-      <to>表输出-退货单</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>验收单单据处理</from>
-      <to>表输出-验收单</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>变价单单据处理</from>
-      <to>表输出-变价单</to>
+      <from>日期格式化</from>
+      <to>金度订单头输出</to>
       <enabled>Y</enabled>
     </hop>
   </order>
@@ -558,19 +548,7 @@
     <cases>
       <case>
         <value>订单</value>
-        <target_step>订单单据处理</target_step>
-      </case>
-      <case>
-        <value>验收单</value>
-        <target_step>验收单单据处理</target_step>
-      </case>
-      <case>
-        <value>退货单</value>
-        <target_step>退货单单据处理</target_step>
-      </case>
-      <case>
-        <value>变价单</value>
-        <target_step>变价单单据处理</target_step>
+        <target_step>金度订单头解析</target_step>
       </case>
     </cases>
     <attributes/>
@@ -583,13 +561,13 @@
     </remotesteps>
     <GUI>
       <xloc>256</xloc>
-      <yloc>368</yloc>
+      <yloc>272</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>变价单单据处理</name>
-    <type>JsonInput</type>
+    <name>商品数据处理</name>
+    <type>ReplaceString</type>
     <description/>
     <distribute>Y</distribute>
     <custom_distribution/>
@@ -598,90 +576,32 @@
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <include>N</include>
-    <include_field/>
-    <rownum>N</rownum>
-    <addresultfile>N</addresultfile>
-    <readurl>N</readurl>
-    <removeSourceField>N</removeSourceField>
-    <IsIgnoreEmptyFile>N</IsIgnoreEmptyFile>
-    <doNotFailIfNoFile>Y</doNotFailIfNoFile>
-    <ignoreMissingPath>Y</ignoreMissingPath>
-    <defaultPathLeafToNull>Y</defaultPathLeafToNull>
-    <rownum_field/>
-    <file>
-      <name/>
-      <filemask/>
-      <exclude_filemask/>
-      <file_required>N</file_required>
-      <include_subfolders>N</include_subfolders>
-    </file>
     <fields>
       <field>
-        <name>ref_date</name>
-        <path>$..list[*].ref_date</path>
-        <type>None</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-        <repeat>N</repeat>
+        <in_stream_name>GOODS_DETAIL</in_stream_name>
+        <out_stream_name/>
+        <use_regex>no</use_regex>
+        <replace_string>[</replace_string>
+        <replace_by_string>{"商品详情": [</replace_by_string>
+        <set_empty_string>N</set_empty_string>
+        <replace_field_by_string/>
+        <whole_word>no</whole_word>
+        <case_sensitive>no</case_sensitive>
+        <is_unicode>no</is_unicode>
       </field>
       <field>
-        <name>user_source</name>
-        <path>$..list[*].user_source</path>
-        <type>None</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-        <repeat>N</repeat>
-      </field>
-      <field>
-        <name>new_user</name>
-        <path>$..list[*].new_user</path>
-        <type>None</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-        <repeat>N</repeat>
-      </field>
-      <field>
-        <name>cancel_user</name>
-        <path>$..list[*].cancel_user</path>
-        <type>None</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-        <repeat>N</repeat>
+        <in_stream_name>GOODS_DETAIL</in_stream_name>
+        <out_stream_name/>
+        <use_regex>no</use_regex>
+        <replace_string>]</replace_string>
+        <replace_by_string>]}</replace_by_string>
+        <set_empty_string>N</set_empty_string>
+        <replace_field_by_string/>
+        <whole_word>no</whole_word>
+        <case_sensitive>no</case_sensitive>
+        <is_unicode>no</is_unicode>
       </field>
     </fields>
-    <limit>0</limit>
-    <IsInFields>Y</IsInFields>
-    <IsAFile>N</IsAFile>
-    <valueField>JSON_TEXT</valueField>
-    <shortFileFieldName/>
-    <pathFieldName/>
-    <hiddenFieldName/>
-    <lastModificationTimeFieldName/>
-    <uriNameFieldName/>
-    <rootUriNameFieldName/>
-    <extensionFieldName/>
-    <sizeFieldName/>
     <attributes/>
     <cluster_schema/>
     <remotesteps>
@@ -691,8 +611,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>416</xloc>
-      <yloc>480</yloc>
+      <xloc>528</xloc>
+      <yloc>144</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -707,26 +627,23 @@
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <connection>XGT_TARGET</connection>
+    <connection>KMS_BOZHI_82</connection>
     <sql>SELECT
   ID
-, ORG_CODE
-, ORG_NAME
-, KUNAG
-, KUNAG_NAME
-, LGORT
-, LGORT_NAME
-, SUPPLIER_CODE
-, AREA
-, SYS_CODE
-, SYS_NAME
+, RESPONSIBLE_PERSON
+, CUSTOMER_CODE
+, CUSTOMER_NAME
+, VENDER_CODE
+, VENDER_NAME
+, KA_CODE
+, KA_NAME
 , INVOICES_TYPE
-, ACCOUNT
 , INSERT_DATE
 , JSON_TEXT
 , PARSE_STATUS
-FROM BI.F_INVOICES_DETAIL
-WHERE ID = ${ID}</sql>
+FROM ${kms_bozhi_82_table_user}.F_KMS_INVOICES_DETAIL
+WHERE ID = ${ID}
+</sql>
     <limit>0</limit>
     <lookup/>
     <execute_each_row>N</execute_each_row>
@@ -742,460 +659,12 @@ WHERE ID = ${ID}</sql>
     </remotesteps>
     <GUI>
       <xloc>112</xloc>
-      <yloc>368</yloc>
+      <yloc>272</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>表输出-变价单</name>
-    <type>TableOutput</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <connection>XGT_TARGET</connection>
-    <schema>BI</schema>
-    <table>TEST_JSON</table>
-    <commit>1000</commit>
-    <truncate>N</truncate>
-    <ignore_errors>N</ignore_errors>
-    <use_batch>Y</use_batch>
-    <specify_fields>Y</specify_fields>
-    <partitioning_enabled>N</partitioning_enabled>
-    <partitioning_field/>
-    <partitioning_daily>N</partitioning_daily>
-    <partitioning_monthly>Y</partitioning_monthly>
-    <tablename_in_field>N</tablename_in_field>
-    <tablename_field/>
-    <tablename_in_table>Y</tablename_in_table>
-    <return_keys>N</return_keys>
-    <return_field/>
-    <fields>
-      <field>
-        <column_name>ORG_CODE</column_name>
-        <stream_name>ORG_CODE</stream_name>
-      </field>
-      <field>
-        <column_name>ORG_NAME</column_name>
-        <stream_name>ORG_NAME</stream_name>
-      </field>
-      <field>
-        <column_name>KUNAG</column_name>
-        <stream_name>KUNAG</stream_name>
-      </field>
-      <field>
-        <column_name>KUNAG_NAME</column_name>
-        <stream_name>KUNAG_NAME</stream_name>
-      </field>
-      <field>
-        <column_name>LGORT</column_name>
-        <stream_name>LGORT</stream_name>
-      </field>
-      <field>
-        <column_name>LGORT_NAME</column_name>
-        <stream_name>LGORT_NAME</stream_name>
-      </field>
-      <field>
-        <column_name>SUPPLIER_CODE</column_name>
-        <stream_name>SUPPLIER_CODE</stream_name>
-      </field>
-      <field>
-        <column_name>AREA</column_name>
-        <stream_name>AREA</stream_name>
-      </field>
-      <field>
-        <column_name>SYS_CODE</column_name>
-        <stream_name>SYS_CODE</stream_name>
-      </field>
-      <field>
-        <column_name>SYS_NAME</column_name>
-        <stream_name>SYS_NAME</stream_name>
-      </field>
-      <field>
-        <column_name>INVOICES_TYPE</column_name>
-        <stream_name>INVOICES_TYPE</stream_name>
-      </field>
-      <field>
-        <column_name>ACCOUNT</column_name>
-        <stream_name>ACCOUNT</stream_name>
-      </field>
-      <field>
-        <column_name>INSERT_DATE</column_name>
-        <stream_name>INSERT_DATE</stream_name>
-      </field>
-      <field>
-        <column_name>REF_DATE</column_name>
-        <stream_name>ref_date</stream_name>
-      </field>
-      <field>
-        <column_name>USER_SOURCE</column_name>
-        <stream_name>user_source</stream_name>
-      </field>
-      <field>
-        <column_name>NEW_USER</column_name>
-        <stream_name>new_user</stream_name>
-      </field>
-      <field>
-        <column_name>CANCEL_USER</column_name>
-        <stream_name>cancel_user</stream_name>
-      </field>
-    </fields>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>544</xloc>
-      <yloc>480</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>表输出-订单</name>
-    <type>TableOutput</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <connection>XGT_TARGET</connection>
-    <schema>BI</schema>
-    <table>TEST_JSON</table>
-    <commit>1000</commit>
-    <truncate>N</truncate>
-    <ignore_errors>N</ignore_errors>
-    <use_batch>Y</use_batch>
-    <specify_fields>Y</specify_fields>
-    <partitioning_enabled>N</partitioning_enabled>
-    <partitioning_field/>
-    <partitioning_daily>N</partitioning_daily>
-    <partitioning_monthly>Y</partitioning_monthly>
-    <tablename_in_field>N</tablename_in_field>
-    <tablename_field/>
-    <tablename_in_table>Y</tablename_in_table>
-    <return_keys>N</return_keys>
-    <return_field/>
-    <fields>
-      <field>
-        <column_name>ORG_CODE</column_name>
-        <stream_name>ORG_CODE</stream_name>
-      </field>
-      <field>
-        <column_name>ORG_NAME</column_name>
-        <stream_name>ORG_NAME</stream_name>
-      </field>
-      <field>
-        <column_name>KUNAG</column_name>
-        <stream_name>KUNAG</stream_name>
-      </field>
-      <field>
-        <column_name>KUNAG_NAME</column_name>
-        <stream_name>KUNAG_NAME</stream_name>
-      </field>
-      <field>
-        <column_name>LGORT</column_name>
-        <stream_name>LGORT</stream_name>
-      </field>
-      <field>
-        <column_name>LGORT_NAME</column_name>
-        <stream_name>LGORT_NAME</stream_name>
-      </field>
-      <field>
-        <column_name>SUPPLIER_CODE</column_name>
-        <stream_name>SUPPLIER_CODE</stream_name>
-      </field>
-      <field>
-        <column_name>AREA</column_name>
-        <stream_name>AREA</stream_name>
-      </field>
-      <field>
-        <column_name>SYS_CODE</column_name>
-        <stream_name>SYS_CODE</stream_name>
-      </field>
-      <field>
-        <column_name>SYS_NAME</column_name>
-        <stream_name>SYS_NAME</stream_name>
-      </field>
-      <field>
-        <column_name>INVOICES_TYPE</column_name>
-        <stream_name>INVOICES_TYPE</stream_name>
-      </field>
-      <field>
-        <column_name>ACCOUNT</column_name>
-        <stream_name>ACCOUNT</stream_name>
-      </field>
-      <field>
-        <column_name>INSERT_DATE</column_name>
-        <stream_name>INSERT_DATE</stream_name>
-      </field>
-      <field>
-        <column_name>REF_DATE</column_name>
-        <stream_name>ref_date</stream_name>
-      </field>
-      <field>
-        <column_name>USER_SOURCE</column_name>
-        <stream_name>user_source</stream_name>
-      </field>
-      <field>
-        <column_name>NEW_USER</column_name>
-        <stream_name>new_user</stream_name>
-      </field>
-      <field>
-        <column_name>CANCEL_USER</column_name>
-        <stream_name>cancel_user</stream_name>
-      </field>
-    </fields>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>544</xloc>
-      <yloc>240</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>表输出-退货单</name>
-    <type>TableOutput</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <connection>XGT_TARGET</connection>
-    <schema>BI</schema>
-    <table>TEST_JSON</table>
-    <commit>1000</commit>
-    <truncate>N</truncate>
-    <ignore_errors>N</ignore_errors>
-    <use_batch>Y</use_batch>
-    <specify_fields>Y</specify_fields>
-    <partitioning_enabled>N</partitioning_enabled>
-    <partitioning_field/>
-    <partitioning_daily>N</partitioning_daily>
-    <partitioning_monthly>Y</partitioning_monthly>
-    <tablename_in_field>N</tablename_in_field>
-    <tablename_field/>
-    <tablename_in_table>Y</tablename_in_table>
-    <return_keys>N</return_keys>
-    <return_field/>
-    <fields>
-      <field>
-        <column_name>ORG_CODE</column_name>
-        <stream_name>ORG_CODE</stream_name>
-      </field>
-      <field>
-        <column_name>ORG_NAME</column_name>
-        <stream_name>ORG_NAME</stream_name>
-      </field>
-      <field>
-        <column_name>KUNAG</column_name>
-        <stream_name>KUNAG</stream_name>
-      </field>
-      <field>
-        <column_name>KUNAG_NAME</column_name>
-        <stream_name>KUNAG_NAME</stream_name>
-      </field>
-      <field>
-        <column_name>LGORT</column_name>
-        <stream_name>LGORT</stream_name>
-      </field>
-      <field>
-        <column_name>LGORT_NAME</column_name>
-        <stream_name>LGORT_NAME</stream_name>
-      </field>
-      <field>
-        <column_name>SUPPLIER_CODE</column_name>
-        <stream_name>SUPPLIER_CODE</stream_name>
-      </field>
-      <field>
-        <column_name>AREA</column_name>
-        <stream_name>AREA</stream_name>
-      </field>
-      <field>
-        <column_name>SYS_CODE</column_name>
-        <stream_name>SYS_CODE</stream_name>
-      </field>
-      <field>
-        <column_name>SYS_NAME</column_name>
-        <stream_name>SYS_NAME</stream_name>
-      </field>
-      <field>
-        <column_name>INVOICES_TYPE</column_name>
-        <stream_name>INVOICES_TYPE</stream_name>
-      </field>
-      <field>
-        <column_name>ACCOUNT</column_name>
-        <stream_name>ACCOUNT</stream_name>
-      </field>
-      <field>
-        <column_name>INSERT_DATE</column_name>
-        <stream_name>INSERT_DATE</stream_name>
-      </field>
-      <field>
-        <column_name>REF_DATE</column_name>
-        <stream_name>ref_date</stream_name>
-      </field>
-      <field>
-        <column_name>USER_SOURCE</column_name>
-        <stream_name>user_source</stream_name>
-      </field>
-      <field>
-        <column_name>NEW_USER</column_name>
-        <stream_name>new_user</stream_name>
-      </field>
-      <field>
-        <column_name>CANCEL_USER</column_name>
-        <stream_name>cancel_user</stream_name>
-      </field>
-    </fields>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>544</xloc>
-      <yloc>400</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>表输出-验收单</name>
-    <type>TableOutput</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <connection>XGT_TARGET</connection>
-    <schema>BI</schema>
-    <table>TEST_JSON</table>
-    <commit>1000</commit>
-    <truncate>N</truncate>
-    <ignore_errors>N</ignore_errors>
-    <use_batch>Y</use_batch>
-    <specify_fields>Y</specify_fields>
-    <partitioning_enabled>N</partitioning_enabled>
-    <partitioning_field/>
-    <partitioning_daily>N</partitioning_daily>
-    <partitioning_monthly>Y</partitioning_monthly>
-    <tablename_in_field>N</tablename_in_field>
-    <tablename_field/>
-    <tablename_in_table>Y</tablename_in_table>
-    <return_keys>N</return_keys>
-    <return_field/>
-    <fields>
-      <field>
-        <column_name>ORG_CODE</column_name>
-        <stream_name>ORG_CODE</stream_name>
-      </field>
-      <field>
-        <column_name>ORG_NAME</column_name>
-        <stream_name>ORG_NAME</stream_name>
-      </field>
-      <field>
-        <column_name>KUNAG</column_name>
-        <stream_name>KUNAG</stream_name>
-      </field>
-      <field>
-        <column_name>KUNAG_NAME</column_name>
-        <stream_name>KUNAG_NAME</stream_name>
-      </field>
-      <field>
-        <column_name>LGORT</column_name>
-        <stream_name>LGORT</stream_name>
-      </field>
-      <field>
-        <column_name>LGORT_NAME</column_name>
-        <stream_name>LGORT_NAME</stream_name>
-      </field>
-      <field>
-        <column_name>SUPPLIER_CODE</column_name>
-        <stream_name>SUPPLIER_CODE</stream_name>
-      </field>
-      <field>
-        <column_name>AREA</column_name>
-        <stream_name>AREA</stream_name>
-      </field>
-      <field>
-        <column_name>SYS_CODE</column_name>
-        <stream_name>SYS_CODE</stream_name>
-      </field>
-      <field>
-        <column_name>SYS_NAME</column_name>
-        <stream_name>SYS_NAME</stream_name>
-      </field>
-      <field>
-        <column_name>INVOICES_TYPE</column_name>
-        <stream_name>INVOICES_TYPE</stream_name>
-      </field>
-      <field>
-        <column_name>ACCOUNT</column_name>
-        <stream_name>ACCOUNT</stream_name>
-      </field>
-      <field>
-        <column_name>INSERT_DATE</column_name>
-        <stream_name>INSERT_DATE</stream_name>
-      </field>
-      <field>
-        <column_name>REF_DATE</column_name>
-        <stream_name>ref_date</stream_name>
-      </field>
-      <field>
-        <column_name>USER_SOURCE</column_name>
-        <stream_name>user_source</stream_name>
-      </field>
-      <field>
-        <column_name>NEW_USER</column_name>
-        <stream_name>new_user</stream_name>
-      </field>
-      <field>
-        <column_name>CANCEL_USER</column_name>
-        <stream_name>cancel_user</stream_name>
-      </field>
-    </fields>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>544</xloc>
-      <yloc>320</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>订单单据处理</name>
+    <name>金度订单头解析</name>
     <type>JsonInput</type>
     <description/>
     <distribute>Y</distribute>
@@ -1225,8 +694,8 @@ WHERE ID = ${ID}</sql>
     </file>
     <fields>
       <field>
-        <name>ref_date</name>
-        <path>$..list[*].ref_date</path>
+        <name>ORDER_NUMBER</name>
+        <path>$.form[*].data.订单号</path>
         <type>None</type>
         <format/>
         <currency/>
@@ -1234,12 +703,12 @@ WHERE ID = ${ID}</sql>
         <group/>
         <length>-1</length>
         <precision>-1</precision>
-        <trim_type>none</trim_type>
+        <trim_type>both</trim_type>
         <repeat>N</repeat>
       </field>
       <field>
-        <name>user_source</name>
-        <path>$..list[*].user_source</path>
+        <name>BUYER_NAME</name>
+        <path>$.form[*].data.采购名称</path>
         <type>None</type>
         <format/>
         <currency/>
@@ -1247,12 +716,12 @@ WHERE ID = ${ID}</sql>
         <group/>
         <length>-1</length>
         <precision>-1</precision>
-        <trim_type>none</trim_type>
+        <trim_type>both</trim_type>
         <repeat>N</repeat>
       </field>
       <field>
-        <name>new_user</name>
-        <path>$..list[*].new_user</path>
+        <name>RECORDER</name>
+        <path>$.form[*].data.录入人</path>
         <type>None</type>
         <format/>
         <currency/>
@@ -1260,12 +729,12 @@ WHERE ID = ${ID}</sql>
         <group/>
         <length>-1</length>
         <precision>-1</precision>
-        <trim_type>none</trim_type>
+        <trim_type>both</trim_type>
         <repeat>N</repeat>
       </field>
       <field>
-        <name>cancel_user</name>
-        <path>$..list[*].cancel_user</path>
+        <name>STORE_NAME</name>
+        <path>$.form[*].data.门店名称</path>
         <type>None</type>
         <format/>
         <currency/>
@@ -1273,7 +742,124 @@ WHERE ID = ${ID}</sql>
         <group/>
         <length>-1</length>
         <precision>-1</precision>
-        <trim_type>none</trim_type>
+        <trim_type>both</trim_type>
+        <repeat>N</repeat>
+      </field>
+      <field>
+        <name>ORDER_DATE</name>
+        <path>$.form[*].data.订货日期</path>
+        <type>None</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <trim_type>both</trim_type>
+        <repeat>N</repeat>
+      </field>
+      <field>
+        <name>VALID_DATE</name>
+        <path>$.form[*].data.有效期</path>
+        <type>None</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <trim_type>both</trim_type>
+        <repeat>N</repeat>
+      </field>
+      <field>
+        <name>ARRIVE_AMOUNT_IN_TAX_FORM</name>
+        <path>$.form[*].data.到货含税金额</path>
+        <type>None</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <trim_type>both</trim_type>
+        <repeat>N</repeat>
+      </field>
+      <field>
+        <name>ACCEPTOR</name>
+        <path>$.form[*].data.验收人</path>
+        <type>None</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <trim_type>both</trim_type>
+        <repeat>N</repeat>
+      </field>
+      <field>
+        <name>ORDER_FORM_AMOUNT</name>
+        <path>$.form[*].data.订货含税金额</path>
+        <type>None</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <trim_type>both</trim_type>
+        <repeat>N</repeat>
+      </field>
+      <field>
+        <name>ACCEPT_DATE</name>
+        <path>$.form[*].data.收货日期</path>
+        <type>None</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <trim_type>both</trim_type>
+        <repeat>N</repeat>
+      </field>
+      <field>
+        <name>CHECKER</name>
+        <path>$.form[*].data.审核人</path>
+        <type>None</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <trim_type>both</trim_type>
+        <repeat>N</repeat>
+      </field>
+      <field>
+        <name>ESTIMATE_ARRIVE_DATE</name>
+        <path>$.form[*].data.预到货日期</path>
+        <type>None</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <trim_type>both</trim_type>
+        <repeat>N</repeat>
+      </field>
+      <field>
+        <name>GOODS_DETAIL</name>
+        <path>$.form[*].data.商品详情</path>
+        <type>None</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <trim_type>both</trim_type>
         <repeat>N</repeat>
       </field>
     </fields>
@@ -1299,13 +885,13 @@ WHERE ID = ${ID}</sql>
     </remotesteps>
     <GUI>
       <xloc>416</xloc>
-      <yloc>240</yloc>
+      <yloc>144</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>退货单单据处理</name>
-    <type>JsonInput</type>
+    <name>金度订单头输出</name>
+    <type>TableOutput</type>
     <description/>
     <distribute>Y</distribute>
     <custom_distribution/>
@@ -1314,90 +900,113 @@ WHERE ID = ${ID}</sql>
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <include>N</include>
-    <include_field/>
-    <rownum>N</rownum>
-    <addresultfile>N</addresultfile>
-    <readurl>N</readurl>
-    <removeSourceField>N</removeSourceField>
-    <IsIgnoreEmptyFile>N</IsIgnoreEmptyFile>
-    <doNotFailIfNoFile>Y</doNotFailIfNoFile>
-    <ignoreMissingPath>Y</ignoreMissingPath>
-    <defaultPathLeafToNull>Y</defaultPathLeafToNull>
-    <rownum_field/>
-    <file>
-      <name/>
-      <filemask/>
-      <exclude_filemask/>
-      <file_required>N</file_required>
-      <include_subfolders>N</include_subfolders>
-    </file>
+    <connection>KMS_BOZHI_82</connection>
+    <schema/>
+    <table>F_KMS_ORDER_FORM_DETAIL_STG</table>
+    <commit>1000</commit>
+    <truncate>N</truncate>
+    <ignore_errors>N</ignore_errors>
+    <use_batch>Y</use_batch>
+    <specify_fields>Y</specify_fields>
+    <partitioning_enabled>N</partitioning_enabled>
+    <partitioning_field/>
+    <partitioning_daily>N</partitioning_daily>
+    <partitioning_monthly>Y</partitioning_monthly>
+    <tablename_in_field>N</tablename_in_field>
+    <tablename_field/>
+    <tablename_in_table>Y</tablename_in_table>
+    <return_keys>N</return_keys>
+    <return_field/>
     <fields>
       <field>
-        <name>ref_date</name>
-        <path>$..list[*].ref_date</path>
-        <type>None</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-        <repeat>N</repeat>
+        <column_name>INVOICES_ID</column_name>
+        <stream_name>ID</stream_name>
       </field>
       <field>
-        <name>user_source</name>
-        <path>$..list[*].user_source</path>
-        <type>None</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-        <repeat>N</repeat>
+        <column_name>RESPONSIBLE_PERSON</column_name>
+        <stream_name>RESPONSIBLE_PERSON</stream_name>
       </field>
       <field>
-        <name>new_user</name>
-        <path>$..list[*].new_user</path>
-        <type>None</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-        <repeat>N</repeat>
+        <column_name>CUSTOMER_CODE</column_name>
+        <stream_name>CUSTOMER_CODE</stream_name>
       </field>
       <field>
-        <name>cancel_user</name>
-        <path>$..list[*].cancel_user</path>
-        <type>None</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-        <repeat>N</repeat>
+        <column_name>CUSTOMER_NAME</column_name>
+        <stream_name>CUSTOMER_NAME</stream_name>
+      </field>
+      <field>
+        <column_name>VENDER_CODE</column_name>
+        <stream_name>VENDER_CODE</stream_name>
+      </field>
+      <field>
+        <column_name>VENDER_NAME</column_name>
+        <stream_name>VENDER_NAME</stream_name>
+      </field>
+      <field>
+        <column_name>KA_CODE</column_name>
+        <stream_name>KA_CODE</stream_name>
+      </field>
+      <field>
+        <column_name>KA_NAME</column_name>
+        <stream_name>KA_NAME</stream_name>
+      </field>
+      <field>
+        <column_name>INVOICES_TYPE</column_name>
+        <stream_name>INVOICES_TYPE</stream_name>
+      </field>
+      <field>
+        <column_name>ORDER_NUMBER</column_name>
+        <stream_name>ORDER_NUMBER</stream_name>
+      </field>
+      <field>
+        <column_name>BUYER_NAME</column_name>
+        <stream_name>BUYER_NAME</stream_name>
+      </field>
+      <field>
+        <column_name>RECORDER</column_name>
+        <stream_name>RECORDER</stream_name>
+      </field>
+      <field>
+        <column_name>STORE_NAME</column_name>
+        <stream_name>STORE_NAME</stream_name>
+      </field>
+      <field>
+        <column_name>ORDER_DATE</column_name>
+        <stream_name>ORDER_DATE</stream_name>
+      </field>
+      <field>
+        <column_name>VALID_DATE</column_name>
+        <stream_name>VALID_DATE</stream_name>
+      </field>
+      <field>
+        <column_name>ARRIVE_AMOUNT_IN_TAX_FORM</column_name>
+        <stream_name>ARRIVE_AMOUNT_IN_TAX_FORM</stream_name>
+      </field>
+      <field>
+        <column_name>ACCEPTOR</column_name>
+        <stream_name>ACCEPTOR</stream_name>
+      </field>
+      <field>
+        <column_name>ORDER_FORM_AMOUNT</column_name>
+        <stream_name>ORDER_FORM_AMOUNT</stream_name>
+      </field>
+      <field>
+        <column_name>ACCEPT_DATE</column_name>
+        <stream_name>ACCEPT_DATE</stream_name>
+      </field>
+      <field>
+        <column_name>CHECKER</column_name>
+        <stream_name>CHECKER</stream_name>
+      </field>
+      <field>
+        <column_name>ESTIMATE_ARRIVE_DATE</column_name>
+        <stream_name>ESTIMATE_ARRIVE_DATE</stream_name>
+      </field>
+      <field>
+        <column_name>GOODS_DETAIL</column_name>
+        <stream_name>GOODS_DETAIL</stream_name>
       </field>
     </fields>
-    <limit>0</limit>
-    <IsInFields>Y</IsInFields>
-    <IsAFile>N</IsAFile>
-    <valueField>JSON_TEXT</valueField>
-    <shortFileFieldName/>
-    <pathFieldName/>
-    <hiddenFieldName/>
-    <lastModificationTimeFieldName/>
-    <uriNameFieldName/>
-    <rootUriNameFieldName/>
-    <extensionFieldName/>
-    <sizeFieldName/>
     <attributes/>
     <cluster_schema/>
     <remotesteps>
@@ -1407,14 +1016,14 @@ WHERE ID = ${ID}</sql>
       </output>
     </remotesteps>
     <GUI>
-      <xloc>416</xloc>
-      <yloc>400</yloc>
+      <xloc>976</xloc>
+      <yloc>144</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>验收单单据处理</name>
-    <type>JsonInput</type>
+    <name>日期格式化</name>
+    <type>SelectValues</type>
     <description/>
     <distribute>Y</distribute>
     <custom_distribution/>
@@ -1423,90 +1032,177 @@ WHERE ID = ${ID}</sql>
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <include>N</include>
-    <include_field/>
-    <rownum>N</rownum>
-    <addresultfile>N</addresultfile>
-    <readurl>N</readurl>
-    <removeSourceField>N</removeSourceField>
-    <IsIgnoreEmptyFile>N</IsIgnoreEmptyFile>
-    <doNotFailIfNoFile>Y</doNotFailIfNoFile>
-    <ignoreMissingPath>Y</ignoreMissingPath>
-    <defaultPathLeafToNull>Y</defaultPathLeafToNull>
-    <rownum_field/>
-    <file>
-      <name/>
-      <filemask/>
-      <exclude_filemask/>
-      <file_required>N</file_required>
-      <include_subfolders>N</include_subfolders>
-    </file>
     <fields>
       <field>
-        <name>ref_date</name>
-        <path>$..list[*].ref_date</path>
-        <type>None</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-        <repeat>N</repeat>
+        <name>ID</name>
+        <rename/>
       </field>
       <field>
-        <name>user_source</name>
-        <path>$..list[*].user_source</path>
-        <type>None</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-        <repeat>N</repeat>
+        <name>RESPONSIBLE_PERSON</name>
+        <rename/>
       </field>
       <field>
-        <name>new_user</name>
-        <path>$..list[*].new_user</path>
-        <type>None</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-        <repeat>N</repeat>
+        <name>CUSTOMER_CODE</name>
+        <rename/>
       </field>
       <field>
-        <name>cancel_user</name>
-        <path>$..list[*].cancel_user</path>
-        <type>None</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-        <repeat>N</repeat>
+        <name>CUSTOMER_NAME</name>
+        <rename/>
       </field>
+      <field>
+        <name>VENDER_CODE</name>
+        <rename/>
+      </field>
+      <field>
+        <name>VENDER_NAME</name>
+        <rename/>
+      </field>
+      <field>
+        <name>KA_CODE</name>
+        <rename/>
+      </field>
+      <field>
+        <name>KA_NAME</name>
+        <rename/>
+      </field>
+      <field>
+        <name>INVOICES_TYPE</name>
+        <rename/>
+      </field>
+      <field>
+        <name>INSERT_DATE</name>
+        <rename/>
+      </field>
+      <field>
+        <name>JSON_TEXT</name>
+        <rename/>
+      </field>
+      <field>
+        <name>PARSE_STATUS</name>
+        <rename/>
+      </field>
+      <field>
+        <name>ORDER_NUMBER</name>
+        <rename/>
+      </field>
+      <field>
+        <name>BUYER_NAME</name>
+        <rename/>
+      </field>
+      <field>
+        <name>RECORDER</name>
+        <rename/>
+      </field>
+      <field>
+        <name>STORE_NAME</name>
+        <rename/>
+      </field>
+      <field>
+        <name>VALID_DATE</name>
+        <rename/>
+      </field>
+      <field>
+        <name>ARRIVE_AMOUNT_IN_TAX_FORM</name>
+        <rename/>
+      </field>
+      <field>
+        <name>ACCEPTOR</name>
+        <rename/>
+      </field>
+      <field>
+        <name>ORDER_FORM_AMOUNT</name>
+        <rename/>
+      </field>
+      <field>
+        <name>ACCEPT_DATE</name>
+        <rename/>
+      </field>
+      <field>
+        <name>CHECKER</name>
+        <rename/>
+      </field>
+      <field>
+        <name>ESTIMATE_ARRIVE_DATE</name>
+        <rename/>
+      </field>
+      <field>
+        <name>GOODS_DETAIL</name>
+        <rename/>
+      </field>
+      <field>
+        <name>ORDER_DATE</name>
+        <rename/>
+      </field>
+      <select_unspecified>N</select_unspecified>
+      <meta>
+        <name>ORDER_DATE</name>
+        <rename>ORDER_DATE</rename>
+        <type>String</type>
+        <length>-2</length>
+        <precision>-2</precision>
+        <conversion_mask>yyyy-MM-dd</conversion_mask>
+        <date_format_lenient>false</date_format_lenient>
+        <date_format_locale/>
+        <date_format_timezone/>
+        <lenient_string_to_number>false</lenient_string_to_number>
+        <encoding/>
+        <decimal_symbol/>
+        <grouping_symbol/>
+        <currency_symbol/>
+        <storage_type/>
+      </meta>
+      <meta>
+        <name>ESTIMATE_ARRIVE_DATE</name>
+        <rename>ESTIMATE_ARRIVE_DATE</rename>
+        <type>String</type>
+        <length>-2</length>
+        <precision>-2</precision>
+        <conversion_mask>yyyy-MM-dd</conversion_mask>
+        <date_format_lenient>false</date_format_lenient>
+        <date_format_locale/>
+        <date_format_timezone/>
+        <lenient_string_to_number>false</lenient_string_to_number>
+        <encoding/>
+        <decimal_symbol/>
+        <grouping_symbol/>
+        <currency_symbol/>
+        <storage_type/>
+      </meta>
+      <meta>
+        <name>VALID_DATE</name>
+        <rename>VALID_DATE</rename>
+        <type>String</type>
+        <length>-2</length>
+        <precision>-2</precision>
+        <conversion_mask>yyyy-MM-dd</conversion_mask>
+        <date_format_lenient>false</date_format_lenient>
+        <date_format_locale/>
+        <date_format_timezone/>
+        <lenient_string_to_number>false</lenient_string_to_number>
+        <encoding/>
+        <decimal_symbol/>
+        <grouping_symbol/>
+        <currency_symbol/>
+        <storage_type/>
+      </meta>
+      <meta>
+        <name>INSERT_DATE</name>
+        <rename>INSERT_DATE</rename>
+        <type>String</type>
+        <length>-2</length>
+        <precision>-2</precision>
+        <conversion_mask>yyyy-MM-dd HH:mm:ss</conversion_mask>
+        <date_format_lenient>false</date_format_lenient>
+        <date_format_locale/>
+        <date_format_timezone/>
+        <lenient_string_to_number>false</lenient_string_to_number>
+        <encoding/>
+        <decimal_symbol/>
+        <grouping_symbol/>
+        <currency_symbol/>
+        <storage_type/>
+      </meta>
     </fields>
-    <limit>0</limit>
-    <IsInFields>Y</IsInFields>
-    <IsAFile>N</IsAFile>
-    <valueField>JSON_TEXT</valueField>
-    <shortFileFieldName/>
-    <pathFieldName/>
-    <hiddenFieldName/>
-    <lastModificationTimeFieldName/>
-    <uriNameFieldName/>
-    <rootUriNameFieldName/>
-    <extensionFieldName/>
-    <sizeFieldName/>
     <attributes/>
     <cluster_schema/>
     <remotesteps>
@@ -1516,8 +1212,244 @@ WHERE ID = ${ID}</sql>
       </output>
     </remotesteps>
     <GUI>
-      <xloc>416</xloc>
-      <yloc>320</yloc>
+      <xloc>864</xloc>
+      <yloc>144</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>日期格式调整</name>
+    <type>SelectValues</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <fields>
+      <field>
+        <name>ID</name>
+        <rename/>
+      </field>
+      <field>
+        <name>RESPONSIBLE_PERSON</name>
+        <rename/>
+      </field>
+      <field>
+        <name>CUSTOMER_CODE</name>
+        <rename/>
+      </field>
+      <field>
+        <name>CUSTOMER_NAME</name>
+        <rename/>
+      </field>
+      <field>
+        <name>VENDER_CODE</name>
+        <rename/>
+      </field>
+      <field>
+        <name>VENDER_NAME</name>
+        <rename/>
+      </field>
+      <field>
+        <name>KA_CODE</name>
+        <rename/>
+      </field>
+      <field>
+        <name>KA_NAME</name>
+        <rename/>
+      </field>
+      <field>
+        <name>INVOICES_TYPE</name>
+        <rename/>
+      </field>
+      <field>
+        <name>INSERT_DATE</name>
+        <rename/>
+      </field>
+      <field>
+        <name>JSON_TEXT</name>
+        <rename/>
+      </field>
+      <field>
+        <name>PARSE_STATUS</name>
+        <rename/>
+      </field>
+      <field>
+        <name>ORDER_NUMBER</name>
+        <rename/>
+      </field>
+      <field>
+        <name>BUYER_NAME</name>
+        <rename/>
+      </field>
+      <field>
+        <name>RECORDER</name>
+        <rename/>
+      </field>
+      <field>
+        <name>STORE_NAME</name>
+        <rename/>
+      </field>
+      <field>
+        <name>ORDER_DATE</name>
+        <rename/>
+      </field>
+      <field>
+        <name>VALID_DATE</name>
+        <rename/>
+      </field>
+      <field>
+        <name>ARRIVE_AMOUNT_IN_TAX_FORM</name>
+        <rename/>
+      </field>
+      <field>
+        <name>ACCEPTOR</name>
+        <rename/>
+      </field>
+      <field>
+        <name>ORDER_FORM_AMOUNT</name>
+        <rename/>
+      </field>
+      <field>
+        <name>ACCEPT_DATE</name>
+        <rename/>
+      </field>
+      <field>
+        <name>CHECKER</name>
+        <rename/>
+      </field>
+      <field>
+        <name>ESTIMATE_ARRIVE_DATE</name>
+        <rename/>
+      </field>
+      <field>
+        <name>GOODS_DETAIL</name>
+        <rename/>
+      </field>
+      <field>
+        <name>ORDER_DATE_1</name>
+        <rename/>
+      </field>
+      <select_unspecified>N</select_unspecified>
+      <remove>
+        <name>ORDER_DATE</name>
+      </remove>
+      <meta>
+        <name>ORDER_DATE_1</name>
+        <rename>ORDER_DATE</rename>
+        <type>Date</type>
+        <length>-2</length>
+        <precision>-2</precision>
+        <conversion_mask>yyyyMMdd</conversion_mask>
+        <date_format_lenient>false</date_format_lenient>
+        <date_format_locale/>
+        <date_format_timezone/>
+        <lenient_string_to_number>false</lenient_string_to_number>
+        <encoding/>
+        <decimal_symbol/>
+        <grouping_symbol/>
+        <currency_symbol/>
+        <storage_type/>
+      </meta>
+      <meta>
+        <name>ESTIMATE_ARRIVE_DATE</name>
+        <rename>ESTIMATE_ARRIVE_DATE</rename>
+        <type>Date</type>
+        <length>-2</length>
+        <precision>-2</precision>
+        <conversion_mask>yyyy-MM-dd HH:mm:ss</conversion_mask>
+        <date_format_lenient>false</date_format_lenient>
+        <date_format_locale/>
+        <date_format_timezone/>
+        <lenient_string_to_number>false</lenient_string_to_number>
+        <encoding/>
+        <decimal_symbol/>
+        <grouping_symbol/>
+        <currency_symbol/>
+        <storage_type/>
+      </meta>
+      <meta>
+        <name>VALID_DATE</name>
+        <rename>VALID_DATE</rename>
+        <type>Date</type>
+        <length>-2</length>
+        <precision>-2</precision>
+        <conversion_mask>yyyy-MM-dd HH:mm:ss</conversion_mask>
+        <date_format_lenient>false</date_format_lenient>
+        <date_format_locale/>
+        <date_format_timezone/>
+        <lenient_string_to_number>false</lenient_string_to_number>
+        <encoding/>
+        <decimal_symbol/>
+        <grouping_symbol/>
+        <currency_symbol/>
+        <storage_type/>
+      </meta>
+      <meta>
+        <name>INSERT_DATE</name>
+        <rename>INSERT_DATE</rename>
+        <type>Date</type>
+        <length>-2</length>
+        <precision>-2</precision>
+        <conversion_mask>yyyy-MM-dd HH:mm:ss</conversion_mask>
+        <date_format_lenient>false</date_format_lenient>
+        <date_format_locale/>
+        <date_format_timezone/>
+        <lenient_string_to_number>false</lenient_string_to_number>
+        <encoding/>
+        <decimal_symbol/>
+        <grouping_symbol/>
+        <currency_symbol/>
+        <storage_type/>
+      </meta>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>752</xloc>
+      <yloc>144</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>订货日期处理</name>
+    <type>StringCut</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <fields>
+      <field>
+        <in_stream_name>ORDER_NUMBER</in_stream_name>
+        <out_stream_name>ORDER_DATE</out_stream_name>
+        <cut_from>1</cut_from>
+        <cut_to>9</cut_to>
+      </field>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>640</xloc>
+      <yloc>144</yloc>
       <draw>Y</draw>
     </GUI>
   </step>

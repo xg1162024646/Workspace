@@ -1,6 +1,6 @@
 <transformation>
   <info>
-    <name>设置主键变量</name>
+    <name>订单头STG_ODS</name>
     <description/>
     <extended_description/>
     <trans_version/>
@@ -426,24 +426,79 @@
     <clusterschemas>
     </clusterschemas>
     <created_user>-</created_user>
-    <created_date>2019/06/06 09:25:07.243</created_date>
+    <created_date>2019/06/25 12:37:05.452</created_date>
     <modified_user>-</modified_user>
-    <modified_date>2019/06/24 15:47:57.958</modified_date>
+    <modified_date>2019/06/26 11:11:24.478</modified_date>
     <key_for_session_key>H4sIAAAAAAAAAAMAAAAAAAAAAAA=</key_for_session_key>
     <is_key_private>N</is_key_private>
   </info>
   <notepads>
   </notepads>
+  <connection>
+    <name>KMS_BOZHI_82</name>
+    <server>${kms_bozhi_82_host}</server>
+    <type>ORACLE</type>
+    <access>Native</access>
+    <database>${kms_bozhi_82_db}</database>
+    <port>${kms_bozhi_82_port}</port>
+    <username>${kms_bozhi_82_db_user}</username>
+    <password>${kms_bozhi_82_pwd}</password>
+    <servername/>
+    <data_tablespace>${kms_bozhi_82_tablespace}</data_tablespace>
+    <index_tablespace/>
+    <attributes>
+      <attribute>
+        <code>FORCE_IDENTIFIERS_TO_LOWERCASE</code>
+        <attribute>N</attribute>
+      </attribute>
+      <attribute>
+        <code>FORCE_IDENTIFIERS_TO_UPPERCASE</code>
+        <attribute>N</attribute>
+      </attribute>
+      <attribute>
+        <code>IS_CLUSTERED</code>
+        <attribute>N</attribute>
+      </attribute>
+      <attribute>
+        <code>PORT_NUMBER</code>
+        <attribute>${kms_bozhi_82_port}</attribute>
+      </attribute>
+      <attribute>
+        <code>PRESERVE_RESERVED_WORD_CASE</code>
+        <attribute>Y</attribute>
+      </attribute>
+      <attribute>
+        <code>QUOTE_ALL_FIELDS</code>
+        <attribute>N</attribute>
+      </attribute>
+      <attribute>
+        <code>STRICT_NUMBER_38_INTERPRETATION</code>
+        <attribute>N</attribute>
+      </attribute>
+      <attribute>
+        <code>SUPPORTS_BOOLEAN_DATA_TYPE</code>
+        <attribute>Y</attribute>
+      </attribute>
+      <attribute>
+        <code>SUPPORTS_TIMESTAMP_DATA_TYPE</code>
+        <attribute>Y</attribute>
+      </attribute>
+      <attribute>
+        <code>USE_POOLING</code>
+        <attribute>N</attribute>
+      </attribute>
+    </attributes>
+  </connection>
   <order>
     <hop>
-      <from>从结果获取记录</from>
-      <to>设置变量</to>
+      <from>获取最新数据</from>
+      <to>插入/更新-订单头</to>
       <enabled>Y</enabled>
     </hop>
   </order>
   <step>
-    <name>从结果获取记录</name>
-    <type>RowsFromResult</type>
+    <name>插入/更新-订单头</name>
+    <type>InsertUpdate</type>
     <description/>
     <distribute>Y</distribute>
     <custom_distribution/>
@@ -452,26 +507,194 @@
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <fields>
-      <field>
+    <connection>KMS_BOZHI_82</connection>
+    <commit>1000</commit>
+    <update_bypassed>N</update_bypassed>
+    <lookup>
+      <schema/>
+      <table>F_KMS_ORDER_FORM_DETAIL</table>
+      <key>
+        <name>ORDER_NUMBER</name>
+        <field>ORDER_NUMBER</field>
+        <condition>=</condition>
+        <name2/>
+      </key>
+      <value>
         <name>ID</name>
-        <type>Integer</type>
-        <length>-1</length>
-        <precision>-1</precision>
-      </field>
-      <field>
-        <name>INVOICES_TYPE</name>
-        <type>String</type>
-        <length>-1</length>
-        <precision>-1</precision>
-      </field>
-      <field>
+        <rename>ID</rename>
+        <update>Y</update>
+      </value>
+      <value>
+        <name>INVOICES_ID</name>
+        <rename>INVOICES_ID</rename>
+        <update>Y</update>
+      </value>
+      <value>
+        <name>CUSTOMER_CODE</name>
+        <rename>CUSTOMER_CODE</rename>
+        <update>Y</update>
+      </value>
+      <value>
+        <name>CUSTOMER_NAME</name>
+        <rename>CUSTOMER_NAME</rename>
+        <update>Y</update>
+      </value>
+      <value>
+        <name>VENDER_CODE</name>
+        <rename>VENDER_CODE</rename>
+        <update>Y</update>
+      </value>
+      <value>
+        <name>VENDER_NAME</name>
+        <rename>VENDER_NAME</rename>
+        <update>Y</update>
+      </value>
+      <value>
+        <name>KA_CODE</name>
+        <rename>KA_CODE</rename>
+        <update>Y</update>
+      </value>
+      <value>
         <name>KA_NAME</name>
-        <type>String</type>
-        <length>-1</length>
-        <precision>-1</precision>
-      </field>
-    </fields>
+        <rename>KA_NAME</rename>
+        <update>Y</update>
+      </value>
+      <value>
+        <name>ORDER_FORM_AMOUNT</name>
+        <rename>ORDER_FORM_AMOUNT</rename>
+        <update>Y</update>
+      </value>
+      <value>
+        <name>RESPONSIBLE_PERSON</name>
+        <rename>RESPONSIBLE_PERSON</rename>
+        <update>Y</update>
+      </value>
+      <value>
+        <name>ORDER_DATE</name>
+        <rename>ORDER_DATE</rename>
+        <update>Y</update>
+      </value>
+      <value>
+        <name>ORDER_NUMBER</name>
+        <rename>ORDER_NUMBER</rename>
+        <update>Y</update>
+      </value>
+      <value>
+        <name>ESTIMATE_ARRIVE_DATE</name>
+        <rename>ESTIMATE_ARRIVE_DATE</rename>
+        <update>Y</update>
+      </value>
+      <value>
+        <name>VALID_DATE</name>
+        <rename>VALID_DATE</rename>
+        <update>Y</update>
+      </value>
+      <value>
+        <name>STORE_NAME</name>
+        <rename>STORE_NAME</rename>
+        <update>Y</update>
+      </value>
+      <value>
+        <name>SUPPLIER_CODE</name>
+        <rename>SUPPLIER_CODE</rename>
+        <update>Y</update>
+      </value>
+      <value>
+        <name>ORDER_PROPERTY</name>
+        <rename>ORDER_PROPERTY</rename>
+        <update>Y</update>
+      </value>
+      <value>
+        <name>IS_ONTIME</name>
+        <rename>IS_ONTIME</rename>
+        <update>Y</update>
+      </value>
+      <value>
+        <name>ORDER_DEPARTMENT</name>
+        <rename>ORDER_DEPARTMENT</rename>
+        <update>Y</update>
+      </value>
+      <value>
+        <name>TO_STORE</name>
+        <rename>TO_STORE</rename>
+        <update>Y</update>
+      </value>
+      <value>
+        <name>DEPT_NAME</name>
+        <rename>DEPT_NAME</rename>
+        <update>Y</update>
+      </value>
+      <value>
+        <name>ARRIVE_FEEDBACK_MESSAGE</name>
+        <rename>ARRIVE_FEEDBACK_MESSAGE</rename>
+        <update>Y</update>
+      </value>
+      <value>
+        <name>GOODS_IS_RIGHT</name>
+        <rename>GOODS_IS_RIGHT</rename>
+        <update>Y</update>
+      </value>
+      <value>
+        <name>FEEDBACK_ARRIVE_DATE</name>
+        <rename>FEEDBACK_ARRIVE_DATE</rename>
+        <update>Y</update>
+      </value>
+      <value>
+        <name>SUPPLIER_NAME</name>
+        <rename>SUPPLIER_NAME</rename>
+        <update>Y</update>
+      </value>
+      <value>
+        <name>NOTE</name>
+        <rename>NOTE</rename>
+        <update>Y</update>
+      </value>
+      <value>
+        <name>ORDER_FORM_TYPE</name>
+        <rename>ORDER_FORM_TYPE</rename>
+        <update>Y</update>
+      </value>
+      <value>
+        <name>ARRIVE_AMOUNT_IN_TAX_FORM</name>
+        <rename>ARRIVE_AMOUNT_IN_TAX_FORM</rename>
+        <update>Y</update>
+      </value>
+      <value>
+        <name>RECORDER</name>
+        <rename>RECORDER</rename>
+        <update>Y</update>
+      </value>
+      <value>
+        <name>CHECKER</name>
+        <rename>CHECKER</rename>
+        <update>Y</update>
+      </value>
+      <value>
+        <name>ACCEPT_DATE</name>
+        <rename>ACCEPT_DATE</rename>
+        <update>Y</update>
+      </value>
+      <value>
+        <name>BUYER_NAME</name>
+        <rename>BUYER_NAME</rename>
+        <update>Y</update>
+      </value>
+      <value>
+        <name>ACCEPTOR</name>
+        <rename>ACCEPTOR</rename>
+        <update>Y</update>
+      </value>
+      <value>
+        <name>INSERT_DATE</name>
+        <rename>INSERT_DATE</rename>
+        <update>Y</update>
+      </value>
+      <value>
+        <name>UPDATE_DATE</name>
+        <rename>UPDATE_DATE</rename>
+        <update>Y</update>
+      </value>
+    </lookup>
     <attributes/>
     <cluster_schema/>
     <remotesteps>
@@ -481,14 +704,14 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>224</xloc>
-      <yloc>192</yloc>
+      <xloc>512</xloc>
+      <yloc>240</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>设置变量</name>
-    <type>SetVariable</type>
+    <name>获取最新数据</name>
+    <type>TableInput</type>
     <description/>
     <distribute>Y</distribute>
     <custom_distribution/>
@@ -497,27 +720,52 @@
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <fields>
-      <field>
-        <field_name>ID</field_name>
-        <variable_name>ID</variable_name>
-        <variable_type>ROOT_JOB</variable_type>
-        <default_value/>
-      </field>
-      <field>
-        <field_name>INVOICES_TYPE</field_name>
-        <variable_name>INVOICES_TYPE</variable_name>
-        <variable_type>ROOT_JOB</variable_type>
-        <default_value/>
-      </field>
-      <field>
-        <field_name>KA_NAME</field_name>
-        <variable_name>KA_NAME</variable_name>
-        <variable_type>ROOT_JOB</variable_type>
-        <default_value/>
-      </field>
-    </fields>
-    <use_formatting>Y</use_formatting>
+    <connection>KMS_BOZHI_82</connection>
+    <sql>SELECT DISTINCT
+  ID
+, INVOICES_ID
+, CUSTOMER_CODE
+, CUSTOMER_NAME
+, VENDER_CODE
+, VENDER_NAME
+, KA_CODE
+, KA_NAME
+, ORDER_FORM_AMOUNT
+, RESPONSIBLE_PERSON
+, ORDER_DATE
+, ORDER_NUMBER
+, ESTIMATE_ARRIVE_DATE
+, VALID_DATE
+, STORE_NAME
+, SUPPLIER_CODE
+, ORDER_PROPERTY
+, IS_ONTIME
+, ORDER_DEPARTMENT
+, TO_STORE
+, DEPT_NAME
+, ARRIVE_FEEDBACK_MESSAGE
+, GOODS_IS_RIGHT
+, FEEDBACK_ARRIVE_DATE
+, SUPPLIER_NAME
+, NOTE
+, ORDER_FORM_TYPE
+, ARRIVE_AMOUNT_IN_TAX_FORM
+, RECORDER
+, CHECKER
+, ACCEPT_DATE
+, BUYER_NAME
+, ACCEPTOR
+, INSERT_DATE
+, UPDATE_DATE
+FROM ${kms_bozhi_82_table_user}.F_KMS_ORDER_FORM_DETAIL_STG
+WHERE INVOICES_ID = ${ID}
+ORDER BY ID DESC
+</sql>
+    <limit>0</limit>
+    <lookup/>
+    <execute_each_row>N</execute_each_row>
+    <variables_active>Y</variables_active>
+    <lazy_conversion_active>N</lazy_conversion_active>
     <attributes/>
     <cluster_schema/>
     <remotesteps>
@@ -527,8 +775,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>448</xloc>
-      <yloc>192</yloc>
+      <xloc>272</xloc>
+      <yloc>240</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
